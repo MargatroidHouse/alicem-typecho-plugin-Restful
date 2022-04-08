@@ -1003,4 +1003,19 @@ class Restful_Action extends Typecho_Widget implements Widget_Interface_Do
     {
         return hash_equals($token, $this->generateCsrfToken($key));
     }
+
+    
+    /**
+     * 获取一言接口
+     *
+     * @return string
+     */
+    public function yiyanAction()
+    {
+        $this->lockMethod('get');
+        $this->checkState('yiyan');
+
+        $yiyan = Aphorisms_Plugin::parse("{quotation} By：{reference}");
+        $this->throwData($yiyan);
+    }
 }
